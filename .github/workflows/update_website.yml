@@ -34,12 +34,12 @@ jobs:
 
       - name: Setup directories inside deepthought-initiative.github.io
         run: |
-          cd kerzendorf-group.github.io
+          cd deepthought-initiative.github.io
           mkdir members sub_research
-          cp -r ../group-data/groupwebsite_data/website_files ./
-          cp -r ../group-data/groupwebsite_data/support_images ./
-          cp -r ../groupwebsite_generator/assets ./
-          rsync -av --exclude '*.json' --exclude 'jsons' ../group-data/members/ ./members
+          cp -r ../dti_group_data/groupwebsite_data/website_files ./
+          cp -r ../dti_group_data/groupwebsite_data/support_images ./
+          cp -r ../dtiwebsite_generator/assets ./
+          rsync -av --exclude '*.json' --exclude 'jsons' ../dti_group_data/members/ ./members
 
       - name: Setup directories inside dti_group_data
         run: |
@@ -57,7 +57,7 @@ jobs:
 
       - name: Run Notebooks
         run: |
-          cd groupwebsite_generator
+          cd dtiwebsite_generator
           jupyter nbconvert --to python notebooks/*.ipynb
           python3 notebooks/ids.py
           python3 notebooks/append_json.py
@@ -74,7 +74,7 @@ jobs:
         env:
           ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
         run: |
-          cd kerzendorf-group.github.io
+          cd deepthought-initiative.github.io
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
