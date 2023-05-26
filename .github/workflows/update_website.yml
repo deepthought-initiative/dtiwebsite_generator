@@ -1,4 +1,4 @@
-name: Update Group Website
+name: Update DTI Website
 
 on:
   workflow_dispatch:
