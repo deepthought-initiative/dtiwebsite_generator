@@ -45,9 +45,9 @@ jobs:
           mkdir members sub_research
           cp -r ../group_data/website_data/website_files ./
           cp -r ../group_data/website_data/support_images ./
-          cp -r ../groupwebsite_generator/assets ./
+          cp -r ../dtiwebsite_generator/assets ./
           cp -r ../group_data/website_data/content ./
-          rsync -av --exclude '*.json' --exclude 'jsons' ../group-data/members/ ./members
+          rsync -av --exclude '*.json' --exclude 'jsons' ../group_data/members/ ./members
 
       # - name: Setup directories inside group-data
       #   run: |
