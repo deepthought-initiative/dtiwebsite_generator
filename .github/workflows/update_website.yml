@@ -10,7 +10,7 @@ on:
      branches:
        - main
      paths-ignore:
-       - 'group_data/**'
+       - 'group-data/**'
 
 jobs:
   Update_website:
@@ -25,7 +25,7 @@ jobs:
 
       - name: Clone repositories
         run: |
-          git clone git@github.com:deepthought-initiative/group_data.git
+          git clone git@github.com:deepthought-initiative/group-data.git
           git clone git@github.com:deepthought-initiative/dtiwebsite_generator.git
           git clone git@github.com:deepthought-initiative/deepthought-initiative.github.io.git
 
@@ -43,11 +43,11 @@ jobs:
         run: |
           cd deepthought-initiative.github.io
           mkdir members sub_research
-          cp -r ../group_data/website_data/website_files ./
-          cp -r ../group_data/website_data/support_images ./
+          cp -r ../group-data/website_data/website_files ./
+          cp -r ../group-data/website_data/support_images ./
           cp -r ../dtiwebsite_generator/assets ./
-          # cp -r ../group_data/website_data/content ./
-          rsync -av --exclude '*.json' --exclude 'jsons' ../group_data/members/ ./members
+          # cp -r ../group-data/website_data/content ./
+          rsync -av --exclude '*.json' --exclude 'jsons' ../group-data/members/ ./members
 
       # - name: Setup directories inside group-data
       #   run: |
