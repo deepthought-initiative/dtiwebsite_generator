@@ -3,7 +3,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{{ general.website_title }} </title>
+    <title>Research | {{ general.website_title }} </title>
 
     <!-- google-fonts -->
     <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&amp;display=swap" rel="stylesheet">
@@ -16,40 +16,58 @@
     <div id="_bsa_srv-CKYI627U_0"></div>
     <div id="_bsa_srv-CKYI653J_1"></div>
     <!-- Buttons-->
-<style>
-    .button {
-      padding: 15px 25px;
-      font-size: 20px;
-      text-align: center;
-      cursor: pointer;
-      outline: none;
-      color: #fff;
-      background-color: #7750bb;
-      border: none;
-      border-radius: 15px;
-      box-shadow: 0 9px #999;
-    }
-    
-    .button:hover {background-color: #9669e5}
-    
-    .button:active {
-      background-color: #a087cc;
-      box-shadow: 0 5px #666;
-      transform: translateY(4px);
-    }
+    <style>
+        .button {
+            padding: 15px 25px;
+            font-size: 20px;
+            text-align: center;
+            cursor: pointer;
+            outline: none;
+            color: #fff;
+            background-color: #7750bb;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+        }
+
+        .button:hover {
+            background-color: #9669e5
+        }
+
+        .button:active {
+            background-color: #a087cc;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+
+        .heading {
+            color: #000;
+            /* Default color */
+            text-decoration: none;
+        }
+
+        .heading:hover {
+            background-image: linear-gradient(to left, #673ab7, #673ab7);
+            /* Gradient from right to left */
+            -webkit-background-clip: text;
+            /* Apply gradient as text color */
+            -webkit-text-fill-color: transparent;
+            /* Make text transparent */
+        }
     </style>
 
 </head>
 
 <body>
-    
+
     <!--header-->
     <header id="site-header" class="fixed-top">
         <div class="container">
             <nav class="navbar navbar-expand-lg stroke">
                 <h1>
                     <a class="navbar-brand" href="index.html">
-                        <!--span class="fa fa-lightbulb"></span--> {{general.logo_title}}
+                        <!--span class="fa fa-lightbulb"></span-->
+                        {{general.logo_title}}
                     </a>
                 </h1>
                 <!-- if logo is image enable this   
@@ -76,8 +94,8 @@
 
                         {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ page_link(page) }}.html">{{ page }} <span
-                                    class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{ page_link(page) }}.html">{{ page }}
+                                <span class="sr-only">(current)</span></a>
                         </li>
 
                         {% endif %}
@@ -123,7 +141,6 @@
     </header>
     <!--//header-->
 
-
     <!-- about banner -->
     <section class="w3l-about-breadcrumb text-center">
         <div class="breadcrumb-bg breadcrumb-bg-about py-5">
@@ -136,84 +153,101 @@
     </section>
     <!-- //about banner -->
 
-
-
     <!-- Blog Section -->
     <section class="w3l-blog">
         <div class="blog py-5" id="Newsblog">
-            {% for project_list in [astrophysical_transients, computational_metascience] %}
-            {% if project_list|length > 0 %}
-            <div class="text-center" style="padding-top: 5%;">
-                <h1> {{ project_list[0]['category'] }}</h1>
+            {% for category in content[content['category'] != 'News']['category'].unique() %}
+            {% set project_list = content[(content['category'] == category)] %}
+            {% if project_list.shape[0] > 0 %}
+            <div class="text-center heading" style="padding-top: 5%;">
+                <h1><a href="sub_research/{{ category|replace(' ', '_')|lower }}.html" style="color: black;">{{ category
+                        }}</a></h1>
             </div>
             <div class="container py-lg-5 py-md-4 py-2">
                 <div class="row">
-                    
-
-                    {% for project in project_list %}
-                    {% if not loop.first %}
-                    <div class="col-lg-4 col-md-6 item">
+                    {% set counter = 0 %}
+                    {% for _, project in project_list.iterrows() %}
+                    {% set content_data = ContentData(project['article_id']) %}
+                    {% set project_info = content_data.load_json() %}
+                    {% if counter < 3 %} <div class="col-lg-4 col-md-6 item">
                         <div class="card">
                             <div class="card-header p-0 position-relative">
-                                <a href="sub_research/{{ project_list[0]['category']|replace(' ', '_')|lower }}/{{ page_link(project.name) }}.html"
+                                <a href="sub_research/{{ category|replace(' ', '_')|lower }}/{{ project['article_id']|lower }}.html"
                                     class="zoom d-block">
-                                    <img class="card-img-bottom d-block" src="{{ project.image_path['cover_image'] }}"
-                                        alt="array">
+                                    <img style="max-width: 380px; max-height: 230px;" class="card-img-bottom d-block"
+                                        src="{{ project_info['cover_image'] }}" alt="array">
                                 </a>
                                 <div class="date">
-                                    <p>{{ project.article_date }} </p>
+                                    <p>{{ project_info['article_date'] }}</p>
                                 </div>
                             </div>
-                            <div class="card-body blog-details">
-                                <a href="sub_research/{{ project_list[0]['category']|replace(' ', '_')|lower }}/{{ page_link(project.name) }}.html"
-                                    class="blog-desc"> {{ project.name }} </a>
-                                <div class="price-review mb-1 align-items-center">
-                                    <p>{{ project.short_description }} </p>
+                            <div class="card-body blog-details" style="max-height: 220px">
+                            <div class="heading">
+                                <h5 class="mb-3"
+                                    style="height: 55px; overflow: hidden; display: flex; align-items: center;">
+                                    <a style=" text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; color:black"
+                                        href="sub_research/{{ category|replace(' ', '_')|lower }}/{{ project['article_id']|lower }}.html">
+                                        {{ project_info['title'] }}
+                                    </a>
+                                </h5>
+                                </div>
+                                <hr style="border-top: 1px dotted rgba(143, 143, 143);">
+                                <div class="price-review mb-1 align-items-center" style="height: 80px;">
+
+                                    <p
+                                        style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                                        {{ project_info['short_description'] }}
+                                    </p>
+
                                 </div>
 
                             </div>
                             <div class="card-footer">
+                                {% set author_id = project_info['author_id'] %}
+                                {% if author_id %}
+                                {% set member = MemberData(author_id) %}
+                                {% set author_info = member.basic_info() %}
+                                {% set author_name = author_info['nick_name'] if author_info['nick_name'] else
+                                author_info['first_name'] + ' ' + author_info['last_name'] %}
                                 <div class="author align-items-center">
-                                    <a href="#author" class="post-author">
-                                        <img src="members/{{ project.authon_image }}" alt=""
-                                            class="img-fluid rounded-circle">
+                                    <a href="members/{{ author_id }}/{{ author_id }}.html" class="post-author"
+                                        target="_blank">
+                                        <img src="members/{{ author_id }}/{{ author_info['image_path'] }}"
+                                            alt="Author's Image" class="img-fluid rounded-circle">
                                     </a>
                                     <ul class="blog-meta">
                                         <li>
-                                            <span class="meta-value">Article by </span><a href="#author">{{
-                                                project.author }}</a>
+                                            <span class="meta-value">Article by </span>
+                                            <a href="members/{{ author_id }}/{{ author_id }}.html" target="_blank">{{
+                                                author_name }}</a>
                                         </li>
                                     </ul>
                                 </div>
+                                {% endif %}
                             </div>
                         </div>
-                    </div>
-                    {% endif %}
-                    {% endfor %}
-
-
-
-                    <pagination>
-                        <div class="pagination-wrapper mt-5 pt-lg-3 text-center">
-                            <ul class="page-pagination">
-
-                                <!--li><a class="next" href="#url">Next <span class="fa fa-angle-right"></span></a></li-->
-                                <button class="button text-center" style="max-width: 180px;"><a
-                                        href="sub_research/{{ project_list[0]['category']|replace(' ', '_')|lower }}.html" style="color: white;">More articles</a></button>
-                            </ul>
-                        </div>
-                    </pagination>
-
                 </div>
+                {% set counter = counter + 1 %}
+                {% endif %}
+                {% endfor %}
             </div>
-            {% endif %}
-            {% endfor %}
+            <pagination>
+                <div class="pagination-wrapper mt-5 pt-lg-3 text-center">
+                    <ul class="page-pagination">
+                        <button class="button text-center" style="max-width: 180px;"><a
+                                href="sub_research/{{ category|replace(' ', '_')|lower }}.html"
+                                style="color: white;">More articles</a></button>
+                    </ul>
+                </div>
+            </pagination>
+        </div>
+        {% endif %}
+        {% endfor %}
         </div>
     </section>
+
+
     <!-- //Blog Section -->
-
-
-
 
     <!-- footer block -->
     <footer class="w3l-footer-29-main">
@@ -223,21 +257,26 @@
                     <div class="col-lg-6 col-md-6 footer-list-29">
                         <h6 class="footer-title-29">Contact Info </h6>
                         {% if general.address != "" %}
-                        <p class="mb-2 pe-xl-5">Address : {{ general.address }}
+                        <p class="mb-2 pe-xl-5">Address : {{ general.address
+                            }}
                         </p>
                         {% endif %}
                         {% if general.phone != "" %}
-                        <p class="mb-2">Phone Number : <a href="tel:{{ general.address }}">{{ general.phone }}</a></p>
+                        <p class="mb-2">Phone Number : <a href="tel:{{ general.address }}">{{
+                                general.phone }}</a></p>
                         {% endif %}
                         {% if general.email != "" %}
-                        <p class="mb-2">Email : <a href="mailto:{{ general.email }}">{{ general.email }}</a></p>
+                        <p class="mb-2">Email : <a href="mailto:{{ general.email }}">{{
+                                general.email }}</a></p>
                         {% endif %}
                     </div>
                     <div class="col-lg-2 col-md-3 col-12 footer-list-29 mt-md-0 mt-4">
                         <ul>
                             <h6 class="footer-title-29">Quick Links</h6>
-                            {% for link_text, link_url in general.useful_links.items() %}
-                            <li><a href="{{ link_url }}" target="_blank">{{ link_text }}</a></li>
+                            {% for link_text, link_url in
+                            general.useful_links.items() %}
+                            <li><a href="{{ link_url }}" target="_blank">{{
+                                    link_text }}</a></li>
                             {% endfor %}
 
                         </ul>
@@ -245,18 +284,15 @@
 
                 </div>
                 <!-- copyright -->
-                <p class="copy-footer-29 text-center mt-5 pb-2">{{general.footer_message}} <br>
-                    Template by <a href="https://w3layouts.com/" target="_blank">W3Layouts</a></p>
+                <p class="copy-footer-29 text-center mt-5 pb-2">{{general.footer_message}}
+                    <br>
+                    Template by <a href="https://w3layouts.com/" target="_blank">W3Layouts</a>
+                </p>
                 <!-- //copyright -->
             </div>
         </div>
     </footer>
     <!-- //footer block -->
-
-
-
-
-
 
     <!-- Js scripts -->
     <!-- move top -->
@@ -370,9 +406,6 @@
     <script src="assets/js/bootstrap.min.js"></script>
     <!-- //bootstrap-->
     <!-- //Js scripts -->
-
-
-
 
 </body>
 </html>

@@ -1,9 +1,16 @@
-name: Update DTI Website
+name: Update Group Website
 
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ["Check Webhook Dispatch"]
+     workflows: ["Check Webhook Dispatch"]
+     types: 
+       - completed
+  push:
+     branches:
+       - main
+     paths-ignore:
+       - 'group-data/**'
 
 jobs:
   Update_website:
@@ -18,7 +25,7 @@ jobs:
 
       - name: Clone repositories
         run: |
-          git clone git@github.com:deepthought-initiative/dti_group_data.git
+          git clone git@github.com:deepthought-initiative/group-data.gith
           git clone git@github.com:deepthought-initiative/dtiwebsite_generator.git
           git clone git@github.com:deepthought-initiative/deepthought-initiative.github.io.git
 
@@ -29,23 +36,24 @@ jobs:
       - name: Clear cloned website repo
         run: |
           cd deepthought-initiative.github.io
-          rm -rf index.html Research.html Contact.html People.html Support.html
-          rm -rf assets website_files members sub_research support_images
+          rm -rf index.html Research.html Contact.html People.html Support.html News.html
+          rm -rf assets website_files members sub_research support_images content
 
       - name: Setup directories inside deepthought-initiative.github.io
         run: |
           cd deepthought-initiative.github.io
           mkdir members sub_research
-          cp -r ../dti_group_data/website_data/website_files ./
-          cp -r ../dti_group_data/website_data/support_images ./
-          cp -r ../dtiwebsite_generator/assets ./
-          rsync -av --exclude '*.json' --exclude 'jsons' ../dti_group_data/members/ ./members
+          cp -r ../group-data/website_data/website_files ./
+          cp -r ../group-data/website_data/support_images ./
+          cp -r ../groupwebsite_generator/assets ./
+          cp -r ../group-data/website_data/content ./
+          rsync -av --exclude '*.json' --exclude 'jsons' ../group-data/members/ ./members
 
-      - name: Setup directories inside dti_group_data
-        run: |
-          cd dti_group_data
-          mkdir members/common
-          mkdir website_data/research/sub_research_data/combined
+      # - name: Setup directories inside group-data
+      #   run: |
+      #     cd group-data
+      #     mkdir members/common
+      #     mkdir website_data/research/sub_research_data/combined
 
 
       - name: Install Jupyter and Python3
@@ -54,12 +62,13 @@ jobs:
           sudo apt-get install -y python3-pip
           sudo -H pip3 install --upgrade pip
           pip3 install jupyter
+          pip3 install pandas
 
       - name: Run Notebooks
         run: |
           cd dtiwebsite_generator
           jupyter nbconvert --to python notebooks/*.ipynb
-          python3 notebooks/jsons_prep.py
+          # python3 notebooks/jsons_prep.py
           python3 notebooks/create_htmls.py
           #for python_file_name in $(find notebooks -name "*.py")
           # do
@@ -74,5 +83,5 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
-          git commit -m "Pushed from website generator"
+          git commit --allow-empty -m "Pushed from website generator"
           git push
