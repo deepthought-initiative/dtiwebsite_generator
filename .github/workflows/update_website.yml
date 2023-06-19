@@ -8,7 +8,7 @@ on:
        - completed
   push:
      branches:
-       - main
+       - master
      paths-ignore:
        - 'group-data/**'
 
@@ -37,14 +37,13 @@ jobs:
         run: |
           cd deepthought-initiative.github.io
           rm -rf index.html Research.html Contact.html People.html Support.html News.html
-          rm -rf assets website_files members sub_research support_images content
+          rm -rf assets website_files members sub_research support_images news
 
       - name: Setup directories inside deepthought-initiative.github.io
         run: |
           cd deepthought-initiative.github.io
           mkdir members sub_research
           cp -r ../group-data/website_data/website_files ./
-          cp -r ../group-data/website_data/support_images ./
           cp -r ../dtiwebsite_generator/assets ./
           # cp -r ../group-data/website_data/content ./
           rsync -av --exclude '*.json' --exclude 'jsons' ../group-data/members/ ./members
