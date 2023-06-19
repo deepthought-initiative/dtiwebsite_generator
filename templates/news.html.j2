@@ -41,10 +41,10 @@
         }
 
         @media (min-width: 998px) {
-        .container {
-            padding-left: 10%; 
+            .w3l-blog {
+                padding-left: 14%;
+            }
         }
-}
     </style>
 
 </head>
@@ -100,7 +100,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {% for sub_page in general[page] %}
                                 <a class="dropdown-item"
-                                   href="sub_research/{{ page_link(sub_page)|lower }}.html">{{sub_page}}</a>
+                                    href="sub_research/{{ page_link(sub_page)|lower }}.html">{{sub_page}}</a>
                                 {% endfor %}
                             </div>
                         </li>
@@ -148,10 +148,10 @@
 
     <!-- Blog Section -->
 
-<section class="w3l-blog">
-    <div class="blog py-5" id="Newsblog">
-        <div class="container py-lg-5 py-md-4 py-2">
-            {% for _, news in content.iterrows() %}
+    <section class="w3l-blog">
+        <div class="blog py-5" id="Newsblog">
+            <div class="container py-lg-5 py-md-4 py-2">
+                {% for _, news in content.iterrows() %}
                 {% set content_data = ContentData(news['article_id']) %}
                 {% set news_info = content_data.load_json() %}
                 <div class="row" style="padding-top: 5%;">
@@ -159,35 +159,40 @@
                         <div class="card">
                             <div class="card-header p-0 position-relative">
                                 {% if news_info.category == category %}
-                                <a href="news/{{ news_info.article_id|replace(' ', '_')|lower  }}.html" class="zoom d-block">
-                                {% endif %}
-                                {% if news_info.category != category %}
-                                <a href="sub_research/{{ news_info.category|replace(' ', '_')|lower  }}/{{ news_info.article_id|replace(' ', '_')|lower  }}.html" class="zoom d-block">
-                                {% endif %}
-                                    <img style="max-width: 520px; max-height: 330px" class="card-img-bottom d-block"
-                                        src="{{ news_info.cover_image }}" alt="array">
-                                </a>
-                                <div class="date">
-                                    <p>{{ news_info.article_date }}</p>
-                                </div>
+                                <a href="news/{{ news_info.article_id|replace(' ', '_')|lower  }}.html"
+                                    class="zoom d-block">
+                                    {% endif %}
+                                    {% if news_info.category != category %}
+                                    <a href="sub_research/{{ news_info.category|replace(' ', '_')|lower  }}/{{ news_info.article_id|replace(' ', '_')|lower  }}.html"
+                                        class="zoom d-block">
+                                        {% endif %}
+                                        <img style="max-width: 520px; max-height: 330px" class="card-img-bottom d-block"
+                                            src="{{ news_info.cover_image }}" alt="array">
+                                    </a>
+                                    <div class="date">
+                                        <p>{{ news_info.article_date }}</p>
+                                    </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 item">
                         <div class="card">
-                            <div class="card-body blog-details" style="max-height: 330px">
+                                 <div class="card-body blog-details" style="max-height: 330px">
                                 {% if news_info.category == category %}
-                                <a href="news/{{ news_info.article_id|replace(' ', '_')|lower  }}.html" class="zoom d-blog"
+                                <a href="news/{{ news_info.article_id|replace(' ', '_')|lower  }}.html" class="zoom d-blog">
                                 {% endif %}
                                 {% if news_info.category != category %}
-                                <a href="sub_research/{{ news_info.category|replace(' ', '_')|lower  }}/{{ news_info.article_id|replace(' ', '_')|lower  }}.html" class="zoom d-blog"
+                                <a href="sub_research/{{ news_info.category|replace(' ', '_')|lower  }}/{{ news_info.article_id|replace(' ', '_')|lower  }}.html" class="zoom d-blog">
                                 {% endif %}
-                                    style="font-weight: bold; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                                <div class="heading">
+                                   <h5 style="font-weight: bold; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; font-size:large; height:67px ">
                                     {{ news_info.title }}
+                                   </h5>
                                 </a>
+                                </div>
                                 <hr style="border-top: 1px dotted rgba(143, 143, 143);">
                                 <div class="price-review mb-1 align-items-center">
-                                    <p style="font-size: 13px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;">
+                                    <p style="font-size: 13px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; height:110px">
                                         {{ news_info.short_description }}
                                     </p>
                                 </div>
@@ -210,15 +215,15 @@
                                                         {% set member_name = member_info.first_name  %}
                                                     {% endif %}
                                                     <li>
-                                                        <a href="../../members/{{ person_id }}/{{ person_id }}.html" target="_blank" style="font-size: 10px;">
-                                                            {{ member_name }}
+                                                        <a href="../../members/{{ person_id }}/{{ person_id }}.html" target="_blank">
+                                                          <p  style="font-size: 10px; height:36px"> {{ member_name }}</p>
                                                         </a>
                                                     </li>
                                                 
                                                 {% elif person_id.strip().split(' ')[-1].strip().lower().startswith("http://") or person_id.strip().split(' ')[-1].strip().lower().startswith("https://") %}
                                                     <li>
                                                         <a href="{{ person_id.strip().split(' ')[-1] }}" target="_blank" style="font-size: 10px;">
-                                                            {{ ' '.join(person_id.strip().split(' ')[0:-1]) }}
+                                                            {{ person_id.strip().split(' ')[0] }}
                                                         </a>
                                                     </li>
 
@@ -240,12 +245,12 @@
                         </div>
                     </div>
                 </div>
-            {% endfor %}
-        </div>  
-    </div>
-</section>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
 
-<!-- //Blog Section -->
+    <!-- //Blog Section -->
 
 
 
