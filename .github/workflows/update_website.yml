@@ -46,7 +46,6 @@ jobs:
         run: |
           cd deepthought-initiative.github.io
           mkdir members sub_research
-          cp -r ../group-data/website_data/website_files ./
           cp -r ../dtiwebsite_generator/assets ./
           # cp -r ../group-data/website_data/content ./
           rsync -av --exclude '*.json' --exclude 'jsons' ../kerzendorf-group/group-data/members/ ./members
@@ -82,6 +81,7 @@ jobs:
           ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
         run: |
           cd deepthought-initiative.github.io
+          cp -r ../group-data/website_data/website_files ./
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
