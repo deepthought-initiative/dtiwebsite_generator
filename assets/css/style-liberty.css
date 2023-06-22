@@ -11741,14 +11741,14 @@ fieldset:disabled .btn {
   --primary-color: #673ab7;
   --secondary-color: #02983f;
   --font-color: #b7b7b7;
-  --bg-color: #26243c;
+  --bg-color: rgb(59, 85, 173);
   --heading-color: #fdfffc;
   --footer-color: #0e0e0e;
   --footer-cpy-color: #060606;
   --border-color-light: rgba(255, 255, 255, 0.2);
   --iframe-filter: grayscale(100%);
   --bg-grey: #1a192a;
-  --bg-light: #26243c;
+  --bg-light: rgb(59, 85, 173);
   --bg-dark-color: #27282b;
   --footer-sub-color: #b7b7b7;
   --disable-color: #5d5d5d;
@@ -18207,7 +18207,7 @@ input:checked+.mode-container i.gg-moon {
 /* top header */
 .w3l-top-header {
   padding: 15px 0px;
-  background: #26243c;
+  background: rgb(59, 85, 173);
   border-bottom: 1px solid #363636;
 }
 
@@ -18225,7 +18225,7 @@ input:checked+.mode-container i.gg-moon {
 
 .w3l-top-header .top-headers li i {
   margin-right: 8px;
-  color: #ababab;
+  color: #ffffff;
 }
 
 .w3l-top-header .top-headers li {
@@ -18390,7 +18390,7 @@ header.nav-fixed {
   padding: 0px;
   border-bottom: none;
   z-index: 9 !important;
-  background: #26243c;
+  background: rgb(59, 85, 173);
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.05);
   height: 80px;
   /* for z-index:10 to display gallery popup */
@@ -20191,7 +20191,7 @@ ul.blog-meta li {
 
 /* footer block */
 .w3l-footer-29-main {
-  background: #26243c;
+  background: rgb(59, 85, 173);
 }
 
 .w3l-footer-29-main h6.footer-title-29 {
@@ -20215,7 +20215,7 @@ ul.blog-meta li {
 .w3l-footer-29-main .footer-list-29 p a,
 .w3l-footer-29-main .footer-list-29 p {
   font-size: 16px;
-  color: #ababab;
+  color:#f2f1e9;
   padding-bottom: 4px;
 }
 
@@ -20236,7 +20236,7 @@ ul.blog-meta li {
 
 p.copy-footer-29 {
   font-size: 16px;
-  color: #ababab;
+  color: #e3e1da;
   border-top: 1px solid #363636;
   padding-top: 35px;
 }
