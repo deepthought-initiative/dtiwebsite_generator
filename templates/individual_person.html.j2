@@ -138,66 +138,68 @@
                         <img src="{{ basic_info.image_path }}" alt="" class="img-fluid" style="max-width: 80%;" />
                     </div>
                     <div class="content-gd col-lg-6 mt-lg-0 mt-5 align-self ps-lg-5">
-                       <h4 class="w3l-title-main mb-lg-4 mb-3" style="color: black;">{% if basic_info.nick_name != "" and not
-        basic_info.nick_name.strip().lower().startswith("enter")
-        %}
-        {{ basic_info.nick_name }}
-        {% else %}
-        {{basic_info.first_name}}
+                        <h4 class="w3l-title-main mb-lg-4 mb-3" style="color: black;">{% if basic_info.nick_name != ""
+                            and not
+                            basic_info.nick_name.strip().lower().startswith("enter")
+                            %}
+                            {{ basic_info.nick_name }}
+                            {% else %}
+                            {{basic_info.first_name}}
 
-        {% endif %}{{basic_info.last_name}}</h4>
+                            {% endif %}{{basic_info.last_name}}</h4>
                         <p class="my-4 pe-lg-5">{{ basic_info.introduction }}</p>
                         {% set social_links = person.social_links() %}
                         {% if social_links %}
-                            <section class="w3l-contacts-12">
+                        <section class="w3l-contacts-12">
 
-                                <div class="container py-lg-4">
+                            <div class="container py-lg-4">
 
-                                    <div class="social-icons-con" style="text-align:center; padding-top:3%;">
-                                        <h4 class="mb-3">Connect with me:</h4>
-                                        {% if social_links['social_media']['website'] != "" and not
-                                        social_links['social_media']['website'].strip().lower().startswith("enter")
-                                        %}
-                                        <a href="{{social_links['social_media']['website']}}" target="_blank"><span class="fa fa-globe"
-                                                aria-hidden="true"></span></a>
-                                        {% endif %}
-                                        {% if social_links['social_media']['github'] != "" and not
-                                        social_links['social_media']['github'].strip().lower().startswith("enter")
-                                        %}
-                                        <a href="{{social_links['social_media']['github']}}" target="_blank"><span
-                                                class="fab fa-github-square" aria-hidden="true"></span></a>
-                                        {% endif %}
-                                        {% if social_links['social_media']['twitter'] != "" and not
-                                        social_links['social_media']['twitter'].strip().lower().startswith("enter")
-                                        %}
-                                        <a href="{{social_links['social_media']['twitter']}}" target="_blank"><span
-                                                class="fab fa-twitter-square" aria-hidden="true"></span></a>
-                                        {% endif %}
-                                        {% if social_links['social_media']['linkedin'] != "" and not
-                                        social_links['social_media']['linkedin'].strip().lower().startswith("enter")
-                                        %}
-                                        <a href="{{social_links['social_media']['linkedin']}}" target="_blank"><span
-                                                class="fab fa-linkedin-in" aria-hidden="true"></span></a>
-                                        {% endif %}
-                                        {% if social_links['social_media']['orcid'] != "" and not
-                                        social_links['social_media']['orcid'].strip().lower().startswith("enter")
-                                        %}
-                                        <a href="https://orcid.org/{{social_links['social_media']['orcid']}}" target="_blank"><span
-                                                class="fa fa-newspaper" aria-hidden="true"></span></a>
-                                        {% endif %}
-                                    </div>
-                                </div>
-                                {% set docs = person.documents() %}
-                                {% if docs %}
-                                    {% if docs['curriculum_vitae'] != "" and not docs['curriculum_vitae'].strip().lower().startswith("enter") %}
-                                        <div style="text-align:center; padding-top:0%; padding-bottom:5%;">
-                                            <a href="{{docs['curriculum_vitae']}}" target="_blank">
-                                                <button class="click_button"><span>Download CV</span></button>
-                                            </a>
-                                        </div>
+                                <div class="social-icons-con" style="text-align:center; padding-top:3%;">
+                                    <h4 class="mb-3">Connect with me:</h4>
+                                    {% if social_links['social_media']['website'] != "" and not
+                                    social_links['social_media']['website'].strip().lower().startswith("enter")
+                                    %}
+                                    <a href="{{social_links['social_media']['website']}}" target="_blank"><span
+                                            class="fa fa-globe" aria-hidden="true"></span></a>
                                     {% endif %}
-                                {% endif %}
-                            </section>
+                                    {% if social_links['social_media']['github'] != "" and not
+                                    social_links['social_media']['github'].strip().lower().startswith("enter")
+                                    %}
+                                    <a href="{{social_links['social_media']['github']}}" target="_blank"><span
+                                            class="fab fa-github-square" aria-hidden="true"></span></a>
+                                    {% endif %}
+                                    {% if social_links['social_media']['twitter'] != "" and not
+                                    social_links['social_media']['twitter'].strip().lower().startswith("enter")
+                                    %}
+                                    <a href="{{social_links['social_media']['twitter']}}" target="_blank"><span
+                                            class="fab fa-twitter-square" aria-hidden="true"></span></a>
+                                    {% endif %}
+                                    {% if social_links['social_media']['linkedin'] != "" and not
+                                    social_links['social_media']['linkedin'].strip().lower().startswith("enter")
+                                    %}
+                                    <a href="{{social_links['social_media']['linkedin']}}" target="_blank"><span
+                                            class="fab fa-linkedin-in" aria-hidden="true"></span></a>
+                                    {% endif %}
+                                    {% if social_links['social_media']['orcid'] != "" and not
+                                    social_links['social_media']['orcid'].strip().lower().startswith("enter")
+                                    %}
+                                    <a href="https://orcid.org/{{social_links['social_media']['orcid']}}"
+                                        target="_blank"><span class="fa fa-newspaper" aria-hidden="true"></span></a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% set docs = person.documents() %}
+                            {% if docs %}
+                            {% if docs['curriculum_vitae'] != "" and not
+                            docs['curriculum_vitae'].strip().lower().startswith("enter") %}
+                            <div style="text-align:center; padding-top:0%; padding-bottom:5%;">
+                                <a href="{{docs['curriculum_vitae']}}" target="_blank">
+                                    <button class="click_button"><span>Download CV</span></button>
+                                </a>
+                            </div>
+                            {% endif %}
+                            {% endif %}
+                        </section>
                         {% endif %}
                     </div>
                 </div>
@@ -229,7 +231,8 @@
                 </tr>
             </thead>
             <tbody>
-                {% if basic_info.project_title != "" and not basic_info.project_title.strip().lower().startswith("enter") %}
+                {% if basic_info.project_title != "" and not
+                basic_info.project_title.strip().lower().startswith("enter") %}
                 <tr>
                     <th scope="row">Project&#40;s&#41;:</th>
                     <td>{{ basic_info.project_title }}</td>
@@ -241,25 +244,30 @@
                     <td>{{ basic_info.org }}</td>
                 </tr>
                 {% endif %}
-                {% if basic_info.academic_role != "" and not basic_info.academic_role.strip().lower().startswith("enter") %}
+                {% if basic_info.academic_role != "" and not
+                basic_info.academic_role.strip().lower().startswith("enter") %}
                 <tr>
                     <th scope="row">Primary Role:</th>
                     <td>{{ basic_info.academic_role }}</td>
                 </tr>
                 {% endif %}
-                {% if basic_info.secondary_role != "" and not basic_info.secondary_role.strip().lower().startswith("enter") %}
+                {% if basic_info.secondary_role != "" and not
+                basic_info.secondary_role.strip().lower().startswith("enter") %}
                 <tr>
                     <th scope="row">Secondary Role:</th>
                     <td>{{ basic_info.secondary_role }}</td>
                 </tr>
                 {% endif %}
-                {% if basic_info.current_institute != "" and not basic_info.current_institute.strip().lower().startswith("enter") %}
+                {% if basic_info.current_institute != "" and not
+                basic_info.current_institute.strip().lower().startswith("enter") %}
                 <tr>
                     <th scope="row">Current Institute:</th>
                     <td>{{ basic_info.current_institute }}</td>
                 </tr>
                 {% endif %}
-                {% if basic_info.group_start_year != "" and basic_info.group_end_year != "" and not basic_info.group_start_year.strip().lower().startswith("enter") and not basic_info.group_end_year.strip().lower().startswith("enter") %}
+                {% if basic_info.group_start_year != "" and basic_info.group_end_year != "" and not
+                basic_info.group_start_year.strip().lower().startswith("enter") and not
+                basic_info.group_end_year.strip().lower().startswith("enter") %}
                 <tr>
                     <th scope="row">Duration:</th>
                     <td>{{ basic_info.group_start_year }}-{{ basic_info.group_end_year }}</td>
@@ -270,12 +278,13 @@
     </section>
 
     <section style="padding-left: 10%; padding-right:10%;">
-    {% for data in ["education", "experience", "projects", "awards", "outreach"] %}
+        {% for data in ["education", "experience", "projects", "awards", "outreach"] %}
         {% set category = person[data]() %}
         {% if category %}
         <div style="padding-top:5%;" class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
-            {% if category[data]['section'] != "" and not category[data]['section'].strip().lower().startswith("enter") %}
-                <h3 class="w3l-title-main">{{ category[data]['section'] }}</h3>
+            {% if category[data]['section'] != "" and not category[data]['section'].strip().lower().startswith("enter")
+            %}
+            <h3 class="w3l-title-main">{{ category[data]['section'] }}</h3>
             {% endif %}
         </div>
         <table class="table table-hover">
@@ -308,50 +317,51 @@
     </section>
 
     <section style="padding-left: 10%; padding-right:10%;">
-    {% for data in ["publications", "documents"] %}
+        {% for data in ["publications", "documents"] %}
         {% set category = person[data]() %}
         {% if category %}
-                {% for key, value in category[data].items() %}
-                    {% if key == "section" and value %}
-                        <div style="padding-top:5%;" class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
-                            <h3 class="w3l-title-main">{{ value }}</h3>
-                        </div>
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    {% for key, value in category[data].headings.items() %}
-                                        {% if value != "" and not value.strip().lower().startswith("enter") %}
-                                            <th scope="col">{{ value }}</th>
-                                        {% endif %}
-                                        {% if value == "Link" %}
-                                            <th scope="col"></th>
-                                        {% endif %}
-                                    {% endfor %}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for key, value in category[data].items() %}
-                                    {% if key != "headings" and key != "section" and key != "display"%}
-                                        <tr>
-                                            {% for key, value in value.items() %}
-                                                {% if key == "entry3" %}
-                                                    {% if value != "" and not value.strip().lower().startswith("enter") %}
-                                                        <td><a href="{{ value }}" target="_blank"><span class="fas fa-external-link-alt"> Link</span></a></td>
-                                                    {% endif %}
-                                                {% else %}
-                                                    {% if value != "" and not value.strip().lower().startswith("enter") %}
-                                                        <td>{{ value }}</td>
-                                                    {% endif %}
-                                                {% endif %}
-                                            {% endfor %}
-                                        </tr>
-                                    {% endif %}
-                                {% endfor %}
-                            </tbody>
-                        </table>
+        {% for key, value in category[data].items() %}
+        {% if key == "section" and value %}
+        <div style="padding-top:5%;" class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
+            <h3 class="w3l-title-main">{{ value }}</h3>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    {% for key, value in category[data].headings.items() %}
+                    {% if value != "" and not value.strip().lower().startswith("enter") %}
+                    <th scope="col">{{ value }}</th>
                     {% endif %}
+                    {% if value == "Link" %}
+                    <th scope="col"></th>
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for key, value in category[data].items() %}
+                {% if key != "headings" and key != "section" and key != "display"%}
+                <tr>
+                    {% for key, value in value.items() %}
+                    {% if key == "entry3" %}
+                    {% if value != "" and not value.strip().lower().startswith("enter") %}
+                    <td><a href="{{ value }}" target="_blank"><span class="fas fa-external-link-alt"> Link</span></a>
+                    </td>
+                    {% endif %}
+                    {% else %}
+                    {% if value != "" and not value.strip().lower().startswith("enter") %}
+                    <td>{{ value }}</td>
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+                {% endif %}
                 {% endfor %}
-            {% endif %}
+            </tbody>
+        </table>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
         {% endfor %}
     </section>
 
@@ -360,7 +370,7 @@
         {% set media = person.website_media() %}
         {% if media %}
         <div style="padding-top:5%;" class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
-                            <h3 class="w3l-title-main">Posters</h3>
+            <h3 class="w3l-title-main">Posters</h3>
         </div>
         <div id="myCarousel" class="carousel slide" style="width: 60%; margin-left: 20%; padding-top:2%">
             <!-- Wrapper for slides -->
@@ -371,14 +381,14 @@
                 <div class="item {% if loop.first %}active{% endif %}">
                     {% if poster.title != "" and not poster.title.strip().lower().startswith("enter") %}
                     <h5 class="text-center" style="padding-bottom:3%">{{ poster.title }}</h3>
-                    {% endif %}
-                    <embed src="{{ poster.link }}" style="width: 100%; height: 600px;">
-                    {% if poster.caption != "" and not poster.caption.strip().lower().startswith("enter") %}
-                    <p class="text-center" style="padding-bottom:1%"><i>{{ poster.caption }}</i></p>
-                    {% endif %}
-                    {% if poster.about != "" and not poster.about.strip().lower().startswith("enter") %}
-                    <p class="text-center" style="padding-bottom:3%">{{ poster.about }}</p>
-                    {% endif %}
+                        {% endif %}
+                        <embed src="{{ poster.link }}" style="width: 100%; height: 600px;">
+                        {% if poster.caption != "" and not poster.caption.strip().lower().startswith("enter") %}
+                        <p class="text-center" style="padding-bottom:1%"><i>{{ poster.caption }}</i></p>
+                        {% endif %}
+                        {% if poster.about != "" and not poster.about.strip().lower().startswith("enter") %}
+                        <p class="text-center" style="padding-bottom:3%">{{ poster.about }}</p>
+                        {% endif %}
                 </div>
                 {% endfor %}
             </div>
@@ -396,7 +406,8 @@
             <!-- Indicators -->
             <ol class="carousel-indicators" style="padding-bottom: 8%;">
                 {% for poster_key, poster in media['posters'].items() if poster_key.startswith('poster') %}
-                <li data-target="#myCarousel" data-slide-to="{{ loop.index0 }}" {% if loop.first %} class="active" {% endif %}></li>
+                <li data-target="#myCarousel" data-slide-to="{{ loop.index0 }}" {% if loop.first %} class="active" {%
+                    endif %}></li>
                 {% endfor %}
             </ol>
             <br><br>
@@ -407,69 +418,80 @@
 
 
 
-<!-- Research and News -->
-<div class="content-info-in row">
-    {% set research_articles = [] %}
-    {% set news_articles = [] %}
+    <!-- Research and News -->
+    <div class="content-info-in row">
+        {% set research_articles = [] %}
+        {% set news_articles = [] %}
 
-    {% for article in content %}
+        {% for article in content %}
         {% set data = ContentData(article['article_id']) %}
         {% if member_id in data.load_json()['people_involved_ids'] %}
-            {% if article.category != 'News' %}
-                {% set _ = research_articles.append(article['article_id']) %}
-            {% else %}
-                {% set _ = news_articles.append(article['article_id']) %}
-            {% endif %}
+        {% if article.category != 'News' %}
+        {% set _ = research_articles.append(article['article_id']) %}
+        {% else %}
+        {% set _ = news_articles.append(article['article_id']) %}
         {% endif %}
-    {% endfor %}
+        {% endif %}
+        {% endfor %}
 
-    {% if research_articles %}
-        <section style="padding-left: 10%; padding-right:10%;">
-            <div class="content-gd col-lg-6 mx-auto infotable">
-                <div class="col-lg-7 right-side-bar mt-lg-6 mt-6 ps-lg-5">
-                    <aside class="posts p-4">
-                        <div style="padding-top: 5%; text-align: center;" class="title-heading-w3 mx-auto mb-sm-5 mb-4 pb-xl-4">
-                            <h3 class="w3l-title-main text-center">Research</h3>
-                        </div>  
-                        <ul class="category">
-                            {% for article in research_articles %}
-                                {% set data = ContentData(article) %}
-                                <li>
-                                    <a href="../../sub_research/{{  data.load_json()['category']|replace(' ', '_')|lower }}/{{ article|lower }}.html" style="width: 100%; display: flex; justify-content: center;">
-                                        <span class="fas fa-angle-right" style="vertical-align: middle; text-overflow: ellipsis; white-space: nowrap; padding-right: 5px;"> {{ data.load_json()['title'] }}</span>
-                                    </a>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </aside>
-                </div>
+{% if research_articles %}
+<section style="padding-left: 10%; padding-right:10%;">
+    <div class="content-gd col-lg-6 mx-auto infotable">
+        <div class="col-lg-7 right-side-bar mt-lg-6 mt-6 ps-lg-5">
+            <div class="white-box"> <!-- New div for white box -->
+                <aside class="posts p-4">
+                    <div style="padding-top: 5%; text-align: center;" class="title-heading-w3 mx-auto mb-sm-5 mb-4 pb-xl-4">
+                        <h3 class="w3l-title-main text-center">Research</h3>
+                    </div>
+                    <ul class="category" style="padding-left: 20px;"> <!-- Adjust the value according to your desired indentation -->
+                        {% for article in research_articles %}
+                        {% set data = ContentData(article) %}
+                        <li>
+                            <a href="../../sub_research/{{ data.load_json()['category']|replace(' ', '_')|lower }}/{{ article|lower }}.html"
+                                style="width: 100%; display: flex; justify-content: center;">
+                                <span class="fas fa-angle-right" style="vertical-align: middle; text-overflow: ellipsis; white-space: nowrap; padding-right: 5px;">
+                                    {{ data.load_json()['title'] }}
+                                </span>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </aside>
             </div>
-        </section>
-    {% endif %}
-    {% if news_articles %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+
+        {% if news_articles %}
         <section style="padding-left: 10%; padding-right:10%;">
             <div class="content-gd col-lg-6 mx-auto infotable">
                 <div class="col-lg-7 right-side-bar mt-lg-0 mt-5 ps-lg-5">
                     <aside class="posts p-4">
-                        <div style="padding-top: 5%; text-align: center;" class="title-heading-w3 mx-auto mb-sm-5 mb-4 pb-xl-4">
+                        <div style="padding-top: 5%; text-align: center;"
+                            class="title-heading-w3 mx-auto mb-sm-5 mb-4 pb-xl-4">
                             <h3 class="w3l-title-main text-center">News</h3>
-                        </div>  
+                        </div>
                         <ul class="category">
                             {% for article in news_articles %}
-                                {% set data = ContentData(article) %}
-                                <li>
-                                    <a href="../../news/{{ article|lower }}.html" style="width: 100%; display: flex; justify-content: center;">
-                                        <span class="fas fa-angle-right" style="vertical-align: middle; text-overflow: ellipsis; white-space: nowrap; padding-right: 5px;"> {{ data.load_json()['title'] }}</span>
-                                    </a>
-                                </li>
+                            {% set data = ContentData(article) %}
+                            <li>
+                                <a href="../../news/{{ article|lower }}.html"
+                                    style="width: 100%; display: flex; justify-content: center;">
+                                    <span class="fas fa-angle-right"
+                                        style="vertical-align: middle; text-overflow: ellipsis; white-space: nowrap; padding-right: 5px;">
+                                        {{ data.load_json()['title'] }}</span>
+                                </a>
+                            </li>
                             {% endfor %}
                         </ul>
                     </aside>
                 </div>
             </div>
         </section>
-    {% endif %}
-</div>
+        {% endif %}
+    </div>
 
 
 
