@@ -28,8 +28,8 @@ jobs:
           git clone git@github.com:deepthought-initiative/group-data.git
           git clone git@github.com:deepthought-initiative/dtiwebsite_generator.git
           git clone git@github.com:deepthought-initiative/deepthought-initiative.github.io.git
-          mkdir kerzendorf-group
-          cd kerzendorf-group
+          mkdir temp
+          cd temp
           git clone git@github.com:kerzendorf-group/group-data.git
 
       - name: List clones
