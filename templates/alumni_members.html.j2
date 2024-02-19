@@ -1,0 +1,136 @@
+{% extends 'base.html.j2' %}
+
+{% block title %} 
+    Alumni Members | {{ general.website_title }} 
+{% endblock %}
+
+{% block additional_style %}
+    <style>
+        .social-icon {
+            font-size: 20px;
+            margin-top: -23%;
+        }
+
+        .external_affiliation {
+            background-color: rgb(177, 143, 232);
+            inline-size: 100%;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px; /* Increased padding for better spacing */
+            text-align: left;
+            font-size: 18px; /* Increased font size for table cells */
+        }
+        th {
+            background-color: #f2f2f2; /* Background color for table header */
+            font-size: 20px; /* Increased font size for table headers */
+        }
+    </style>
+    <!-- Rotating card-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style-liberty.css">
+    <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet">
+    <link href="assets/css/rotating-card.css" rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <!-- about banner -->
+    <section class="w3l-about-breadcrumb text-center">
+        <div class="breadcrumb-bg breadcrumb-bg-people py-5">
+            <div class="container py-lg-5 py-md-4">
+                <div class="banner-info-grid px-md-5" style="margin-top: 3%;">
+                    <h2 class="w3l-title-breadcrumb mb-3">Meet Our Alumni</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //about banner -->
+    
+
+     <!-- Alumni Section start -->
+    <div class="team-area py-5" id="people">
+        <div class="container py-lg-5 py-md-4 py-2">
+            <div class="text-center" style="padding-top: 5%;">
+                <h1>Alumni Members</h1>
+            </div>
+            <div class="cardtainer" style="padding-top: 3%;">
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <table>
+                            <tr>
+                                <th>Name</th>
+                                <th>Academic Role</th>
+                            </tr>
+                            {% for person_id, person_info in alumni_members.items()%}
+                            <tr>
+                                <td>{{ person_info["full_name"] }}</td>
+                                <td>{{ person_info["academic_role"] }}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    <!-- end row -->
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_script %}
+    <!-- magnific popup -->
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.popup-with-zoom-anim').magnificPopup({
+                type: 'inline',
+                fixedContentPos: false,
+                fixedBgPos: true,
+                overflowY: 'auto',
+                closeBtnInside: true,
+                preloader: false,
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in'
+            });
+            $('.popup-with-move-anim').magnificPopup({
+                type: 'inline',
+                fixedContentPos: false,
+                fixedBgPos: true,
+                overflowY: 'auto',
+                closeBtnInside: true,
+                preloader: false,
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-slide-bottom'
+            });
+        });
+    </script>
+    <!-- //magnific popup -->
+
+    <script type="text/javascript">
+        $().ready(function () {
+            $('[rel="tooltip"]').tooltip();
+            $('a.scroll-down').click(function (e) {
+                e.preventDefault();
+                scroll_target = $(this).data('href');
+                $('html, body').animate({
+                    scrollTop: $(scroll_target).offset().top - 60
+                }, 1000);
+            });
+        });
+        function rotateCard(btn) {
+            var $card = $(btn).closest('.card-container');
+            console.log($card);
+            if ($card.hasClass('hover')) {
+                $card.removeClass('hover');
+            } else {
+                $card.addClass('hover');
+            }
+        }
+    </script>
+{% endblock %}
