@@ -44,7 +44,9 @@
             {% for content in recent_content[:3] %}
                 {% if content.category == 'News' %}
                     {% set link_path = 'news' %}
-                {% else %}
+                {% elif content.category == 'Software'%}
+                    {% set link_path = 'sub_research'|replace(' ', '_')|lower %}
+                {%else%}
                     {% set link_path = 'sub_research/' + content.category|replace(' ', '_')|lower %}
                 {% endif %}
                 <div class="col-lg-4 col-md-6">

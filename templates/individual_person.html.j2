@@ -188,7 +188,7 @@
                     {% for row in projects[member_id]['info']  %}
                         <tr>
                             <td>{{ row["project_title"] }}</td>
-                            {#<td>{{ format_years(row) }}</td>#}
+                            <td>{{ format_years(row) }}</td>
                             <td>{{ row["description"] }}</td>
                         </tr>
                     {% endfor %}
@@ -269,8 +269,13 @@
                             </div>
                             <ul class="category">
                                 {% for article in research_articles %}
+                                    {% if article.category == 'Software' %}
+                                        {% set link_path = '../../sub_research'|replace(' ', '_')|lower %}
+                                    {% else %}
+                                        {% set link_path = '../../sub_research/'+ article.category|replace(' ', '_')|lower %}
+                                    {%endif%}
                                     <li>
-                                        <a href="../../sub_research/{{ article.category|replace(' ', '_')|lower }}/{{ article.article_id|lower }}.html"
+                                        <a href="{{link_path}}/{{ article.article_id|lower }}.html"
                                            style="width: 100%; display: flex; justify-content: center;">
                                             <span class="fas fa-angle-right"
                                                   style="vertical-align: middle; text-overflow: ellipsis; white-space: nowrap; padding-right: 5px;"> {{ article.title }}</span>
