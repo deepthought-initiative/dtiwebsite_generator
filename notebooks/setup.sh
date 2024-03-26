@@ -8,7 +8,7 @@ mkdir website_data/research/sub_research_data/combined
 
 cd ..
 cd deepthought-initiative.github.io
-rm -rf index.html Research.html Contact.html People.html Support.html News.html
+rm -rf index.html Computational_Metascience.html Contact.html People.html Support.html News.html alumni_members.html current_members.html
 rm -rf assets website_files members sub_research support_images news
 mkdir members sub_research news
 cp -r ../group-data/website_data/website_files ./

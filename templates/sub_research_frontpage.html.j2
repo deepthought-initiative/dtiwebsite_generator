@@ -1,7 +1,7 @@
 {% extends 'base.html.j2' %}
 
 {% block title %}
-    Research | {{ general.website_title }}
+    Computational Metascience | {{ general.website_title }}
 {% endblock %}
 
 {% block additional_fonts %}
@@ -96,7 +96,7 @@
                                                     src="../{{ writeup.cover_image }}" alt="array">
                                             </a>
                                             <div class="date">
-                                                <p>{{ writeup.date }}</p>
+                                                <p>{{ writeup.date.strftime('%m-%d-%Y')  }}</p>
                                             </div>
                                         </div>
                                         <div class="card-body blog-details" style="max-height: 220px">

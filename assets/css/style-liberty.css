@@ -15,7 +15,8 @@ Author URL: http://w3layouts.com
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
-  --bs-purple: #6f42c1 --bs-pink: #d63384;
+  --bs-purple: #6f42c1;
+  --bs-pink: #d63384;
   --bs-red: #dc3545;
   --bs-orange: #fd7e14;
   --bs-yellow: #ffc107;
@@ -333,10 +334,9 @@ td,
 tfoot,
 th,
 thead,
-tr {
+tr{
   border-color: inherit;
   border-style: solid;
-  border-width: 0
 }
 
 label {
@@ -11726,7 +11726,7 @@ fieldset:disabled .btn {
   --bg-dark-color: #fff;
   --disable-color: #d8d6d6;
   --box-shadow-color: rgb(0 0 0 / 10%);
-  --border-color: #eee
+  --border-color: #eee;
   --heading-color-2: #fff;
   --search-shadow: rgb(0 0 0 / 5%);
   --box-shadow-blog: rgb(0 0 0 / 7%);
@@ -11741,7 +11741,7 @@ fieldset:disabled .btn {
   --primary-color: #673ab7;
   --secondary-color: #02983f;
   --font-color: #b7b7b7;
-  --bg-color: #1a192a;
+  --bg-color: #04012b;
   --heading-color: #fdfffc;
   --footer-color: #0e0e0e;
   --footer-cpy-color: #060606;
@@ -19192,7 +19192,7 @@ form.search-box {
 
 /*-- Why choose us --*/
 .about-section {
-  background-color: var(--bg-grey);
+  background-color: var();
 }
 
 span.text-italic {
@@ -19934,7 +19934,7 @@ button.owl-next {
 
 /*-- Blog --*/
 .w3l-blog,.blog-post-main {
-  background: var(--bg-grey);
+  background: var();
 }
 
 .w3l-blog a.zoom {
@@ -20191,7 +20191,7 @@ ul.blog-meta li {
 
 /* footer block */
 .w3l-footer-29-main {
-  background: #1a192a;
+  background: #0b0930;
 }
 
 .w3l-footer-29-main h6.footer-title-29 {
@@ -20612,7 +20612,7 @@ p.inner-page-para {
 
 
 .company-logos {
-  background: var(--bg-grey);
+  background: var();
 }
 
 .company-logos img {
@@ -22460,4 +22460,4 @@ pre {
 
 .click_button:hover span:after {
   opacity: 1;
-  rig
+}
