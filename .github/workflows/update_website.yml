@@ -28,7 +28,7 @@ jobs:
       - name: Clone deepthought-initiative.github.io
         uses: actions/checkout@v4
         with:
-          repository: KasukabeDefenceForce/deepthought-initiative.github.io
+          repository: deepthought-initiative/deepthought-initiative.github.io
           path: deepthought-initiative.github.io
           token: ${{ secrets.SITE_TARDIS }}
 
