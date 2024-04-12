@@ -52,13 +52,13 @@
 					<div class="content-text-9">
 						<div class="single-post-content-1 row mt-5 no-gutters">
 							{% for key, value in project_info.content.items() %}
-							{% if key.startswith('img') %}
+							{% if key.endswith('img') %}
 							<div class="single-post-image mb-4"
 								style="max-width:fit-content; display: block; margin: auto;">
 								<img src="../{{ value }}" class="img-fluid img-responsive mt-3"
 									alt="blog-post-image">
 							</div>
-							{% elif key.startswith('para') %}
+							{% elif key.endswith('para') %}
 							<div class="single-post-content">
 								<p class="mt-md-0 mt-4 ml-md-4 ml-0">{{ value }}</p>
 							</div>
@@ -66,8 +66,6 @@
 							{% endfor %}
 						</div>
 					</div>
-
-					
 					<div class="col-lg-10 right-side-bar mt-lg-0 mt-5 ps-lg-5" style="padding-top: 5%;">
 						<div class="row">
 							{% if project_info.people_involved_ids %}
