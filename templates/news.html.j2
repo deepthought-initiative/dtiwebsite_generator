@@ -86,7 +86,7 @@
                             <div class="card-header p-0 position-relative">
                                 <a href="news/{{ news["article_id"] |replace(' ', '_')|lower  }}.html"
                                     class="zoom d-block">
-                                        <img style="width: 520px; height: 330px" class="card-img-bottom d-block"
+                                        <img style="width: {{news['cover_image_width']}}; height: {{news['cover_image_height']}}" class="card-img-bottom d-block"
                                             src="{{ news["cover_image"] }}" alt="array">
                                     </a>
                                     <div class="date">
@@ -112,6 +112,25 @@
                                     </p>
                                 </div>
                             </div>
+                            {% if "Internship" in news['tags']%}
+                                <div class="card-footer">
+                                {% set author_id = news['author_id'] %}
+                                {% if author_id in member_data%}
+                                    {% set member = member_data[author_id]%}
+                                    {% set author_name = member['full_name'] %}
+                                    <div class="author align-items-center">
+                                        <a href="../members/{{ author_id }}/{{ author_id }}.html" class="post-author" target="_blank">
+                                            <img src="../members/{{ author_id }}/{{ member['image_path'] }}" alt="Author's Image" class="img-fluid rounded-circle">
+                                        </a>
+                                        <ul class="blog-meta">
+                                            <li>
+                                                <a href="../members/{{ author_id }}/{{ author_id }}.html" target="_blank">{{ author_name }}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                {% endif %}
+                                </div>
+                            {% else %}
                             <div class="card-footer">
                                 <div>
                                     <ul class="blog-meta">
@@ -150,6 +169,7 @@
                                     </ul>
                                 </div>
                             </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
