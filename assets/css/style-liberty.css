@@ -19953,6 +19953,8 @@ button.owl-next {
 
 .w3l-blog .card-body {
   padding: 1.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   background: var(--bg-color);
 }
 
