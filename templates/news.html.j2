@@ -1,7 +1,7 @@
 {% extends 'base.html.j2' %}
 
 {% block title %}
-    Support | {{ general.website_title }} 
+    News | {{ general.website_title }} 
 {% endblock %}
 
 {% block additional_fonts %}
@@ -90,7 +90,7 @@
                                             src="{{ news["cover_image"] }}" alt="array">
                                     </a>
                                     <div class="date">
-                                        <p>{{ news["date"].strftime('%m-%d-%Y')  }}</p>
+                                        <p>{{ news["date"].strftime('%dth %b, %Y')  }}</p>
                                     </div>
                             </div>
                         </div>
@@ -119,14 +119,14 @@
                                     {% set member = member_data[author_id]%}
                                     {% set author_name = member['full_name'] %}
                                     <div class="author align-items-center">
-                                        <a href="../members/{{ author_id }}/{{ author_id }}.html" class="post-author" target="_blank">
-                                            <img src="../members/{{ author_id }}/{{ member['image_path'] }}" alt="Author's Image" class="img-fluid rounded-circle">
-                                        </a>
                                         <ul class="blog-meta">
                                             <li>
                                                 <a href="../members/{{ author_id }}/{{ author_id }}.html" target="_blank">{{ author_name }}</a>
                                             </li>
                                         </ul>
+                                        <a href="../members/{{ author_id }}/{{ author_id }}.html" class="post-author ms-auto" target="_blank">
+                                            <img src="../members/{{ author_id }}/{{ member['image_path'] }}" alt="Author's Image" class="img-fluid rounded-circle">
+                                        </a>
                                     </div>
                                 {% endif %}
                                 </div>
