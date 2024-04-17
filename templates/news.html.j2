@@ -82,12 +82,12 @@
                 {% for news in content.itertuples() %}
                 <div class="row" style="padding-top: 5%;">
                     <div class="col-lg-6 col-md-6 item" style="width: 520px;">
-                        <div class="card">
+                        <div class="card" id="card">
                             <div class="card-header p-0 position-relative">
                                 <a href="news/{{ news["article_id"] |replace(' ', '_')|lower  }}.html"
                                     class="zoom d-block">
                                         <img style="width: {{news['cover_image_width']}}; height: {{news['cover_image_height']}}" class="card-img-bottom d-block"
-                                            src="{{ news["cover_image"] }}" alt="array">
+                                            id="news-cover-image" src="{{ news["cover_image"] }}" alt="array">
                                     </a>
                                     <div class="date">
                                         <p>{{ news["date"].strftime('%dth %b, %Y')  }}</p>
@@ -179,3 +179,57 @@
     </section>
     <!-- //Blog Section -->
 {% endblock %}
+
+{% block additional_script %}
+    /*Getting average color of image*/
+    <script>
+    const allCards = document.querySelectorAll('[id=card]');
+    allCards.forEach(cover => {
+        var coverImage = cover.querySelector('#news-cover-image')
+        var rgb = getAverageRGB(coverImage);
+        cover.style.backgroundColor = 'rgb('+rgb.r+','+rgb.g+','+rgb.b+')';
+    })
+    function getAverageRGB(imgEl) {
+        var blockSize = 5, // only visit every 5 pixels
+            defaultRGB = {r:0,g:0,b:0}, // for non-supporting envs
+            canvas = document.createElement('canvas'),
+            context = canvas.getContext && canvas.getContext('2d'),
+            data, width, height,
+            i = -4,
+            length,
+            rgb = {r:0,g:0,b:0},
+            count = 0;
+            
+        if (!context) {
+            return defaultRGB;
+        }
+        
+        height = canvas.height = imgEl.naturalHeight || imgEl.offsetHeight || imgEl.height;
+        width = canvas.width = imgEl.naturalWidth || imgEl.offsetWidth || imgEl.width;
+        
+        context.drawImage(imgEl, 0, 0);
+        
+        try {
+            data = context.getImageData(0, 0, width, height);
+        } catch(e) {
+            /* security error, img on diff domain */alert('x');
+            return defaultRGB;
+        }
+        
+        length = data.data.length;
+        
+        while ( (i += blockSize * 4) < length ) {
+            ++count;
+            rgb.r += data.data[i];
+            rgb.g += data.data[i+1];
+            rgb.b += data.data[i+2];
+        }
+        
+        // ~~ used to floor values
+        rgb.r = ~~(rgb.r/count);
+        rgb.g = ~~(rgb.g/count);
+        rgb.b = ~~(rgb.b/count);
+        return rgb;            
+    }
+    </script>
+{%endblock%}
