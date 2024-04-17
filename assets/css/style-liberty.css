@@ -19948,11 +19948,13 @@ button.owl-next {
   background: none;
   box-shadow: 0 20px 40px 0 rgba(50, 65, 141, 0.12);
   box-shadow: 0 25px 98px 0 rgba(0, 0, 0, 0.04);
-  border: 1px solid var(--border-color);
+  /* border: 1px solid var(--border-color); */
 }
 
 .w3l-blog .card-body {
   padding: 1.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   background: var(--bg-color);
 }
 
@@ -19961,6 +19963,7 @@ button.owl-next {
 }
 
 .w3l-blog a.zoom img {
+  object-fit: contain;
   transition: 0.3s ease-in-out;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
@@ -19980,8 +19983,8 @@ button.owl-next {
   overflow: hidden;
   border-radius: 50%;
   display: block;
-  width: 40px;
-  height: 40px;
+  width: 55px;
+  height: 55px;
 }
 
 .w3l-blog .card-header {
@@ -20090,8 +20093,8 @@ button.owl-next {
 }
 
 .author {
-  display: grid;
-  grid-template-columns: 40px 1fr auto;
+  display: flex; /*Keep this grid if using grid template columns*/
+  /* grid-template-columns: 40px 1fr auto; */
   grid-gap: 10px;
 }
 
