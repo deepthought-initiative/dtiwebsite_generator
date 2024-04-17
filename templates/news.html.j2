@@ -89,7 +89,7 @@
                                         id="news-cover-image" src="{{ news["cover_image"] }}" alt="array">
                                 </a>
                                 <div class="date">
-                                    <p>{{ news["date"].strftime('%dth %b, %Y')  }}</p>
+                                    <p>{{ news["date"].strftime('%d') }}{% if news["date"].day % 10 == 1 and news["date"].day != 11 %}st{% elif news["date"].day % 10 == 2 and news["date"].day != 12 %}nd{% elif news["date"].day % 10 == 3 and news["date"].day != 13 %}rd{% else %}th{% endif %} {{ news["date"].strftime('%b, %Y') }}</p>
                                 </div>
                             </div>
                         </div>
