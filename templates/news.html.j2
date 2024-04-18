@@ -103,10 +103,12 @@
                                    </h5>
                                 </a>
                                 <hr style="border-top: 1px dotted rgba(143, 143, 143);">
-                                <div class="price-review mb-1 align-items-center">
-                                    <p style="font-size: 13px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; height:110px">
-                                        {{ news["short_description"] }}
-                                    </p>
+                                <div class="description-container price-review mb-1 align-items-center">
+                                    <div class="description-wrapper">
+                                        <p class="description" style="font-size: 13px; overflow: hidden; height:110px">
+                                            {{ news["short_description"] }}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                             {% if "Internship" in news['tags']%}
@@ -228,5 +230,37 @@
         rgb.b = ~~(rgb.b/count);
         return rgb;            
     }
+
+    /*Read more functionality*/
+        $(function () {
+        var maxL = 150;
+        $('.description').each(function () {
+            var text = $(this).text();
+            if (text.length > maxL) {
+            var begin = text.substr(0, maxL),
+                end = text.substr(maxL);
+            $(this).html(begin)
+                .append($('<span class="hidden"/>').html(end))
+                .append($('<a class="readmore"/>').html(' ...Read more')); 
+            }
+        });
+
+        $('.readmore').on('click', function () {
+            var hiddenContent = $(this).prev('.hidden');
+var thisDescription = $(this).parent(); // Reference parent container
+
+    if (hiddenContent.css('display') === 'none') {
+      // Toggle overflow and text on click (Read more)
+      hiddenContent.slideToggle(400);
+      thisDescription.css('overflow', 'auto'); // Set overflow: auto
+      $(this).text('Read less');
+    } else {
+      // Toggle overflow and text on click (Read less)
+      hiddenContent.slideToggle(400);
+      thisDescription.css('overflow', 'hidden'); // Set overflow: hidden
+      $(this).text(' ...Read more');
+    }
+  });
+});
     </script>
 {%endblock%}

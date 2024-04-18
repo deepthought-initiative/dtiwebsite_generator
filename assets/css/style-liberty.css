@@ -4891,6 +4891,21 @@ fieldset:disabled .btn {
   padding: 1rem 1rem
 }
 
+.description .hidden {
+  display: none;
+  text-transform: lowercase !important;
+  line-height: 28px !important;
+  color: var(--font-color) !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+}
+
+.readmore {
+  margin: 0 5px;
+  color: blue;
+  cursor: pointer;
+}
+
 .card-title {
   margin-bottom: .5rem
 }
@@ -19952,9 +19967,7 @@ button.owl-next {
 }
 
 .w3l-blog .card-body {
-  padding: 1.5rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding-bottom: 0.5rem;
   background: var(--bg-color);
 }
 
