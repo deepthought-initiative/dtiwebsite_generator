@@ -4894,7 +4894,6 @@ fieldset:disabled .btn {
 .description .hidden {
   display: none;
   text-transform: lowercase !important;
-  line-height: 28px !important;
   color: var(--font-color) !important;
   font-size: 13px !important;
   font-weight: 400 !important;
