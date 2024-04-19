@@ -84,7 +84,7 @@
                     <div class="col-lg-6 col-md-6 item" style="width: 520px;">
                         <div class="card" id="card">
                             <div class="card-header p-0 position-relative">
-                                <a class="zoom d-block">
+                                <a class="zoom d-flex">
                                     <img style="width: {{news['cover_image_width']}}; height: {{news['cover_image_height']}}" class="card-img-bottom d-block"
                                         id="news-cover-image" src="{{ news["cover_image"] }}" alt="array">
                                 </a>
@@ -104,10 +104,12 @@
                                 </a>
                                 <hr style="border-top: 1px dotted rgba(143, 143, 143);">
                                 <div class="description-container price-review mb-1 align-items-center">
-                                    <div class="description-wrapper">
-                                        <p class="description" style="font-size: 13px; overflow: hidden; height:110px">
-                                            {{ news["short_description"] }}
-                                        </p>
+                                    <div class="description" style="font-size: 13px; overflow: hidden; height:110px">
+                                        {%- for key, value in news.content.items() -%}
+                                        {%- if key.endswith('para') -%}
+                                            <p>{{value}}</p>
+                                        {%- endif -%}
+                                        {%- endfor -%}
                                     </div>
                                 </div>
                             </div>
