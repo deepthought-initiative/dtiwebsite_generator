@@ -81,8 +81,11 @@
 							<li class="circle avatar"><img
 									src="../../members/{{ author_id}}/{{ author_info.image_path }}" class="img-fluid"
 									alt=""></li>
-							<li>Article by <a href="../../members/{{ author_id }}/{{ author_id }}.html"
-									target="_blank">{{ author_name }}</a></li>
+							{% if project_info.category == 'Software' %}
+							<li>Principal Investigator: <a href="../../members/{{ author_id }}/{{ author_id }}.html" target="_blank">{{ author_name | upper}}</a></li>
+							{% else %}
+							<li>Article by <a href="../../members/{{ author_id }}/{{ author_id }}.html" target="_blank">{{ author_name }}</a></li>
+							{% endif %}
 							<li>{{ project_info['date'].strftime('%d') }}{% if project_info["date"].day % 10 == 1 and project_info["date"].day != 11 %}st{% elif project_info["date"].day % 10 == 2 and project_info["date"].day != 12 %}nd{% elif project_info["date"].day % 10 == 3 and project_info["date"].day != 13 %}rd{% else %}th{% endif %} {{ project_info["date"].strftime('%b, %Y') }}</li>
 						</ul>
 						<img src="../../{{ project_info.cover_image }}" class="img-fluid img-responsive"
