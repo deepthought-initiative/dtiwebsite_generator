@@ -18,6 +18,13 @@ jobs:
         with:
           path: dtiwebsite_generator
 
+      - name: Clone kerzendorf group-data
+        uses: actions/checkout@v4
+        with:
+          repository: kerzendorf-lab/group-data
+          path: kerzendorf_lab_group_data
+          token: ${{ secrets.SITE_TARDIS }}
+
       - name: Clone group-data
         uses: actions/checkout@v4
         with:
