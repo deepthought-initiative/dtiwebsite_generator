@@ -1,5 +1,15 @@
 {% extends 'base.html.j2' %}
 
+{% block meta %}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ content.title }}">
+<meta name="twitter:image" content="https://kerzendorf-lab.github.io/website_files/images/article_content/{{ content.image_name }}">
+<meta name="twitter:url" content="https://kerzendorf-lab.github.io/news/{{ content.article_id }}">
+<meta property="og:title" content="{{ content.title }}">
+<meta property="og:image" content="https://kerzendorf-lab.github.io/website_files/images/article_content/{{ content.image_name }}">
+<meta property="og:url" content="https://kerzendorf-lab.github.io/news/{{ content.article_id }}">
+{% endblock %}
+
 {% block title %}
     News | {{ general.website_title }}
 {% endblock %}
@@ -92,7 +102,7 @@
 													</a>
 												</li>
 										{% else %}
-										{{ person_id }}
+										{{ member_name }}
 											{% endif %}
 											{% endfor %}
 										</li>
