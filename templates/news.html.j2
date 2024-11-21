@@ -49,15 +49,21 @@
             text-decoration: none;
         }
 
-.badge {
-    display: inline-block;
-    background-color: red; /* Background color of the badge */
-    color: white;          /* Text color */
-    padding: 4px 8px;     /* Padding around the text */
-    border-radius: 5px;   /* Rounded corners */
-    font-size: 12px;      /* Font size */
-    text-align: center;    /* Center the text */
-}
+        h5:hover {
+        color: #673ab7 !important;
+        text-decoration: underline;
+        }
+
+
+        .badge {
+            display: inline-block;
+            background-color: red; /* Background color of the badge */
+            color: white;          /* Text color */
+            padding: 4px 8px;     /* Padding around the text */
+            border-radius: 5px;   /* Rounded corners */
+            font-size: 12px;      /* Font size */
+            text-align: center;    /* Center the text */
+        }
 
         .heading:hover {
             background-image: linear-gradient(to left, #673ab7, #673ab7);
@@ -108,7 +114,7 @@
                         <div class="card">
                             <div class="card-body blog-details" style="max-height: 330px">
                             <span class="badge">Paper</span>
-                                <a class="zoom d-blog" href="../../news/{{ news.article_id|lower }}.html">
+                                <a class="zoom d-blog news-link" href="../../news/{{ news.article_id|lower }}.html">
                                    <h5 style="font-weight: bold; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; font-size:large; height:67px ">
                                     {{ news["title"] }}
                                    </h5>
