@@ -49,6 +49,16 @@
             text-decoration: none;
         }
 
+.badge {
+    display: inline-block;
+    background-color: red; /* Background color of the badge */
+    color: white;          /* Text color */
+    padding: 4px 8px;     /* Padding around the text */
+    border-radius: 5px;   /* Rounded corners */
+    font-size: 12px;      /* Font size */
+    text-align: center;    /* Center the text */
+}
+
         .heading:hover {
             background-image: linear-gradient(to left, #673ab7, #673ab7);
             /* Gradient from right to left */
@@ -84,7 +94,7 @@
                     <div class="col-lg-6 col-md-6 item" style="width: 520px;">
                         <div class="card" id="card">
                             <div class="card-header p-0 position-relative">
-                                <a class="zoom d-flex">
+                                <a class="zoom d-flex" href="../../news/{{ news.article_id|lower }}.html">
                                     <img style="width: {{news['cover_image_width']}}; height: {{news['cover_image_height']}}" class="card-img-bottom d-block"
                                         id="news-cover-image" src="{{ news["cover_image"] }}" alt="array">
                                 </a>
@@ -97,7 +107,8 @@
                     <div class="col-lg-4 col-md-6 item">
                         <div class="card">
                             <div class="card-body blog-details" style="max-height: 330px">
-                                <a class="zoom d-blog">
+                            <span class="badge">Paper</span>
+                                <a class="zoom d-blog" href="../../news/{{ news.article_id|lower }}.html">
                                    <h5 style="font-weight: bold; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; font-size:large; height:67px ">
                                     {{ news["title"] }}
                                    </h5>
