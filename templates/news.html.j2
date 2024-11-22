@@ -50,20 +50,27 @@
         }
 
         h5:hover {
-        color: #673ab7 !important;
-        text-decoration: underline;
+            color: #673ab7 !important;
+            text-decoration: underline;
         }
-
 
         .badge {
             display: inline-block;
-            background-color: red; /* Background color of the badge */
+            background-color: #673ab7; /* Background color of the badge */
             color: white;          /* Text color */
             padding: 4px 8px;     /* Padding around the text */
-            border-radius: 5px;   /* Rounded corners */
-            font-size: 12px;      /* Font size */
+            border-radius: 5px;   /* Rounded corners *
             text-align: center;    /* Center the text */
         }
+
+        .badge-tray {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+            overflow: auto;
+            overflow-x: auto;
+        }
+
 
         .heading:hover {
             background-image: linear-gradient(to left, #673ab7, #673ab7);
