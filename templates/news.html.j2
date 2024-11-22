@@ -113,12 +113,19 @@
                     <div class="col-lg-4 col-md-6 item">
                         <div class="card">
                             <div class="card-body blog-details" style="max-height: 330px">
-                            <span class="badge">Paper</span>
-                                <a class="zoom d-blog news-link" href="../../news/{{ news.article_id|lower }}.html">
-                                   <h5 style="font-weight: bold; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; font-size:large; height:67px ">
-                                    {{ news["title"] }}
-                                   </h5>
+                                <div class='badge-tray'>
+                                    {%for tag in news['tags']%}
+                                    {%if tag.lower() != "news"%}
+                                    <span class="badge">{{tag.title()}}</span>
+                                    {%endif%}
+                                    {%endfor%}
+                                </div>
+                                <a class="zoom d-blog" href="../../news/{{ news.article_id|lower }}.html">
+                                    <h5 style="font-weight: bold; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; font-size:19px; height:auto;">
+                                    {{ news.title }}
+                                    </h5>
                                 </a>
+                                {#
                                 <hr style="border-top: 1px dotted rgba(143, 143, 143);">
                                 <div class="description-container price-review mb-1 align-items-center">
                                     <div class="description" style="font-size: 13px; overflow: hidden; height:110px">
@@ -129,8 +136,9 @@
                                         {%- endfor -%}
                                     </div>
                                 </div>
+                                #}
                             </div>
-                            {% if "Internship" in news['tags']%}
+                            {% if "achievement" in news['tags']%}
                                 <div class="card-footer">
                                 {% set author_id = news['author_id'] %}
                                 {% if author_id in member_data%}
