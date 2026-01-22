@@ -70,10 +70,23 @@ jobs:
         run: |
           pip install --upgrade pip jupyter pandas Pillow
 
-      - name: Copy DTI config and labmembers to groupwebsite_generator
+      - name: Debug - List cloned directories
+        run: |
+          echo "=== Listing all cloned repos ==="
+          ls -la
+          echo "=== Checking groupwebsite_generator ==="
+          ls -la groupwebsite_generator/
+          echo "=== Checking if assets exists ==="
+          ls -la groupwebsite_generator/assets/ || echo "Assets directory not found!"
+
+      - name: Copy DTI config, labmembers and assets to groupwebsite_generator
         run: |
           cp ../dtiwebsite_generator/config_dti.json .
           cp ../dtiwebsite_generator/labmembers.json .
+          # Copy assets if they don't exist or copy DTI-specific assets
+          if [ ! -d "assets" ]; then
+            cp -r ../dtiwebsite_generator/assets .
+          fi
         working-directory: ./groupwebsite_generator
 
       - name: Clear and setup directories inside deepthought-initiative.github.io
