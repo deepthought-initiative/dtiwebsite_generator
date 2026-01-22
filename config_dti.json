@@ -1,0 +1,31 @@
+{
+  "group": "dti",
+  "platform_filter": "dti",
+  "institution_filter": "Michigan State University",
+  "group_filter": ["DTI", "TARDIS", "kerzendorf"],
+  "paths": {
+    "group_data_dir": "../group-data",
+    "hosting_path": "../deepthought-initiative.github.io",
+    "template_dir": "templates",
+    "article_dir": "../research_news/articles",
+    "source_assets": "assets",
+    "lab_group_data": "../kerzendorf_lab_group_data",
+    "labmembers_json": "../dtiwebsite_generator/labmembers.json"
+  },
+  "category_replacements": {},
+  "default_cover_image_height": "330px",
+  "default_cover_image_width": "520px",
+  "templates": {
+    "research": "computational_metascience.html.j2"
+  },
+  "pages": {
+    "research": "computational_metascience.html"
+  },
+  "individual_member_section_map": {
+    "education": "Education",
+    "experiences": "Experience",
+    "projects": "Projects",
+    "awards": "Awards & Recognition",
+    "outreach": "Outreach Programs"
+  }
+}
