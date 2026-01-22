@@ -70,6 +70,12 @@ jobs:
         run: |
           pip install --upgrade pip jupyter pandas Pillow
 
+      - name: Copy DTI config and labmembers to groupwebsite_generator
+        run: |
+          cp ../dtiwebsite_generator/config_dti.json .
+          cp ../dtiwebsite_generator/labmembers.json .
+        working-directory: ./groupwebsite_generator
+
       - name: Clear and setup directories inside deepthought-initiative.github.io
         run: |
           ./notebooks/setup.sh
