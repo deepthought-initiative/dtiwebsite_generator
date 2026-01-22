@@ -79,19 +79,21 @@ jobs:
           echo "=== Checking if assets exists ==="
           ls -la groupwebsite_generator/assets/ || echo "Assets directory not found!"
 
-      - name: Copy DTI config, labmembers and assets to groupwebsite_generator
+      - name: Copy DTI config, labmembers and setup script to groupwebsite_generator
         run: |
-          cp ../dtiwebsite_generator/config_dti.json .
-          cp ../dtiwebsite_generator/labmembers.json .
-          # Copy assets if they don't exist or copy DTI-specific assets
-          if [ ! -d "assets" ]; then
-            cp -r ../dtiwebsite_generator/assets .
+          cp -f ../dtiwebsite_generator/config_dti.json .
+          cp -f ../dtiwebsite_generator/labmembers.json .
+          cp -f ../dtiwebsite_generator/setup_dti.sh .
+          chmod +x setup_dti.sh
+          # Copy DTI-specific templates if they exist
+          if [ -d "../dtiwebsite_generator/templates" ]; then
+            cp -rf ../dtiwebsite_generator/templates/* templates/ || true
           fi
         working-directory: ./groupwebsite_generator
 
       - name: Clear and setup directories inside deepthought-initiative.github.io
         run: |
-          ./notebooks/setup.sh
+          ./setup_dti.sh
         working-directory: ./groupwebsite_generator
 
       - name: Determine target branch
