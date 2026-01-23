@@ -116,6 +116,13 @@ jobs:
           python3 create_htmls.py
         working-directory: ./groupwebsite_generator/notebooks
 
+      - name: Debug - Check what changed
+        run: |
+          git status
+          git diff --stat
+          git diff --name-only | wc -l
+        working-directory: ./deepthought-initiative.github.io
+
       - name: Push Website
         run: |
           git config user.name 'github-actions[bot]'
