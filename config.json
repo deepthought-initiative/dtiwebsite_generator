@@ -10,7 +10,7 @@
     "article_dir": "../research_news/articles",
     "source_assets": "assets",
     "lab_group_data": "../kerzendorf_lab_group_data",
-    "labmembers_json": "labmembers.json"
+    "labmembers_json": "../group-data/labmembers.json"
   },
   "category_replacements": {},
   "default_cover_image_height": "330px",
