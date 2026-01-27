@@ -8,9 +8,7 @@
     "hosting_path": "../deepthought-initiative.github.io",
     "template_dir": "templates",
     "article_dir": "../research_news/articles",
-    "source_assets": "assets",
-    "lab_group_data": "../kerzendorf_lab_group_data",
-    "labmembers_json": "../group-data/labmembers.json"
+    "source_assets": "assets"
   },
   "category_replacements": {},
   "default_cover_image_height": "330px",
