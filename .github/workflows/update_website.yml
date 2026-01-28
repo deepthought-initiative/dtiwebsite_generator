@@ -111,9 +111,9 @@ jobs:
 
       - name: Run Notebooks
         run: |
-          jupyter nbconvert --execute --to notebook --inplace members.ipynb
-          jupyter nbconvert --execute --to notebook --inplace articles.ipynb
-          jupyter nbconvert --execute --to notebook --inplace create_htmls.ipynb
+          jupyter nbconvert --execute --to html members.ipynb
+          jupyter nbconvert --execute --to html articles.ipynb
+          jupyter nbconvert --execute --to html create_htmls.ipynb
         working-directory: ./groupwebsite_generator/notebooks
 
       - name: Upload executed notebooks as artifacts
@@ -121,9 +121,9 @@ jobs:
         with:
           name: executed-notebooks
           path: |
-            ./groupwebsite_generator/notebooks/members.ipynb
-            ./groupwebsite_generator/notebooks/articles.ipynb
-            ./groupwebsite_generator/notebooks/create_htmls.ipynb
+            ./groupwebsite_generator/notebooks/members.html
+            ./groupwebsite_generator/notebooks/articles.html
+            ./groupwebsite_generator/notebooks/create_htmls.html
           retention-days: 30
 
       - name: Debug - Check what changed
