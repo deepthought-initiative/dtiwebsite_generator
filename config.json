@@ -5,6 +5,7 @@
   "group_filter": ["DTI", "TARDIS", "kerzendorf"],
   "paths": {
     "group_data_dir": "../group-data",
+    "lab_group_data_dir": "../kerzendorf_lab_group_data",
     "hosting_path": "../deepthought-initiative.github.io",
     "template_dir": "templates",
     "article_dir": "../research_news/articles",
