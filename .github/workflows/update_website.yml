@@ -73,24 +73,11 @@ jobs:
         run: |
           pip install --upgrade pip jupyter pandas Pillow
 
-      - name: Debug - List cloned directories
-        run: |
-          echo "=== Listing all cloned repos ==="
-          ls -la
-          echo "=== Checking groupwebsite_generator ==="
-          ls -la groupwebsite_generator/
-          echo "=== Checking if assets exists ==="
-          ls -la groupwebsite_generator/assets/ || echo "Assets directory not found!"
-
       - name: Copy DTI config and setup script to groupwebsite_generator
         run: |
           cp -f ../dtiwebsite_generator/config.json .
           cp -f ../dtiwebsite_generator/setup_dti.sh .
           chmod +x setup_dti.sh
-          # Copy DTI-specific templates if they exist
-          if [ -d "../dtiwebsite_generator/templates" ]; then
-            cp -rf ../dtiwebsite_generator/templates/* templates/ || true
-          fi
         working-directory: ./groupwebsite_generator
 
       - name: Clear and setup directories inside deepthought-initiative.github.io
@@ -124,14 +111,6 @@ jobs:
             ./groupwebsite_generator/notebooks/members.html
             ./groupwebsite_generator/notebooks/articles.html
             ./groupwebsite_generator/notebooks/create_htmls.html
-          retention-days: 30
-
-      - name: Debug - Check what changed
-        run: |
-          git status
-          git diff --stat
-          git diff --name-only | wc -l
-        working-directory: ./deepthought-initiative.github.io
 
       - name: Push Website
         run: |
