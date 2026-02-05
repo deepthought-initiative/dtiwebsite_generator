@@ -10,3 +10,4 @@ cp -r ../group-data/website_data/website_files ./
 cp -r ../groupwebsite_generator/assets ./
 
 rsync -av --exclude '*.json' --exclude 'jsons' ../group-data/members/ ./members
+rsync -av --exclude '*.json' --exclude 'jsons' ../kerzendorf_lab_group_data/members/ ./members
