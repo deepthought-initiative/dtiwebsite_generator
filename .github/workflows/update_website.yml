@@ -78,6 +78,7 @@ jobs:
           cp -f ../dtiwebsite_generator/config.json .
           cp -f ../dtiwebsite_generator/setup_dti.sh .
           chmod +x setup_dti.sh
+          cp -rf ../dtiwebsite_generator/templates/* templates/
         working-directory: ./groupwebsite_generator
 
       - name: Clear and setup directories inside deepthought-initiative.github.io
