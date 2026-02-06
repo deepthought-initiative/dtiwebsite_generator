@@ -7,30 +7,46 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
   update_website:
     name: Updating website
     runs-on: ubuntu-latest
     steps:
+      - name: Clone groupwebsite_generator
+        uses: actions/checkout@v4
+        with:
+          repository: kerzendorf-lab/groupwebsite_generator
+          ref: dti-code
+          path: groupwebsite_generator
+          token: ${{ secrets.SITE_TARDIS }}
+
       - name: Clone dtiwebsite_generator
         uses: actions/checkout@v4
         with:
+          repository: deepthought-initiative/dtiwebsite_generator
+          ref: new-refactor
           path: dtiwebsite_generator
+          token: ${{ secrets.SITE_TARDIS }}
 
-      - name: Clone kerzendorf group-data
+      - name: Clone DTI group-data
+        uses: actions/checkout@v4
+        with:
+          repository: deepthought-initiative/group-data
+          ref: new-refactor
+          path: group-data
+          token: ${{ secrets.SITE_TARDIS }}
+
+      - name: Clone kerzendorf-lab group-data
         uses: actions/checkout@v4
         with:
           repository: kerzendorf-lab/group-data
           path: kerzendorf_lab_group_data
+          ref: dti-experiences 
           token: ${{ secrets.SITE_TARDIS }}
-
-      - name: Clone group-data
-        uses: actions/checkout@v4
-        with:
-          repository: deepthought-initiative/group-data
-          path: group-data
-          token: ${{ secrets.SITE_TARDIS}}
 
       - name: Clone deepthought-initiative.github.io
         uses: actions/checkout@v4
@@ -38,6 +54,7 @@ jobs:
           repository: deepthought-initiative/deepthought-initiative.github.io
           path: deepthought-initiative.github.io
           token: ${{ secrets.SITE_TARDIS }}
+
 
       - name: Clone Research and News data
         uses: actions/checkout@v4
@@ -51,20 +68,38 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Update pip and install Jupyter and Pandas
+      - name: Update pip and install Jupyter, Pandas and Pillow
         run: |
-          pip install --upgrade pip jupyter pandas
+          pip install --upgrade pip jupyter pandas Pillow
+
+      - name: Copy DTI config and setup script to groupwebsite_generator
+        run: |
+          cp -f ../dtiwebsite_generator/config.json .
+          cp -f ../dtiwebsite_generator/setup_dti.sh .
+          chmod +x setup_dti.sh
+          cp -rf ../dtiwebsite_generator/templates/* templates/
+        working-directory: ./groupwebsite_generator
 
       - name: Clear and setup directories inside deepthought-initiative.github.io
         run: |
-          ./notebooks/setup.sh
-        working-directory: dtiwebsite_generator
+          ./setup_dti.sh
+        working-directory: ./groupwebsite_generator
 
       - name: Run Notebooks
         run: |
-          jupyter nbconvert --to python create_htmls.ipynb
-          python3 create_htmls.py
-        working-directory: dtiwebsite_generator/notebooks
+          jupyter nbconvert --execute --to html members.ipynb
+          jupyter nbconvert --execute --to html articles.ipynb
+          jupyter nbconvert --execute --to html create_htmls.ipynb
+        working-directory: ./groupwebsite_generator/notebooks
+
+      - name: Upload executed notebooks as artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: executed-notebooks
+          path: |
+            ./groupwebsite_generator/notebooks/members.html
+            ./groupwebsite_generator/notebooks/articles.html
+            ./groupwebsite_generator/notebooks/create_htmls.html
 
       - name: Push Website
         run: |

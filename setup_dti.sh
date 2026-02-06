@@ -1,0 +1,13 @@
+#!/bin/bash
+
+cd "$(dirname "${BASH_SOURCE[0]}")/../deepthought-initiative.github.io"
+rm -rf index.html Join_Us.html Research.html Contact.html People.html Support.html News.html alumni_members.html current_members.html computational_metascience.html
+rm -rf assets website_files members sub_research support_images news
+
+mkdir -p members sub_research news
+
+cp -r ../group-data/website_data/website_files ./
+cp -r ../groupwebsite_generator/assets ./
+
+rsync -av --exclude '*.json' --exclude 'jsons' ../group-data/members/ ./members
+rsync -av --exclude '*.json' --exclude 'jsons' ../kerzendorf_lab_group_data/members/ ./members
