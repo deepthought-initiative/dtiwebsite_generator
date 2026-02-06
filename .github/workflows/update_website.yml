@@ -54,8 +54,7 @@ jobs:
           repository: deepthought-initiative/deepthought-initiative.github.io
           path: deepthought-initiative.github.io
           token: ${{ secrets.SITE_TARDIS }}
-          ref: testpull-request-new-refactor
-          
+
 
       - name: Clone Research and News data
         uses: actions/checkout@v4
@@ -86,17 +85,6 @@ jobs:
           ./setup_dti.sh
         working-directory: ./groupwebsite_generator
 
-      - name: Determine target branch
-        id: determine-branch
-        run: |
-          if [ "${{ github.event_name }}" == "pull_request" ]; then
-            BRANCH_NAME="pull-request-${{ github.head_ref }}"
-          else
-            BRANCH_NAME="main"
-          fi
-          echo "TARGET_BRANCH=$BRANCH_NAME" >> $GITHUB_ENV
-          echo "Target branch: $BRANCH_NAME"
-
       - name: Run Notebooks
         run: |
           jupyter nbconvert --execute --to html members.ipynb
@@ -117,21 +105,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-
-          # Create or switch to target branch
-          TARGET_BRANCH="test${{ env.TARGET_BRANCH }}"
-          git fetch origin
-
-          # Add changes before switching branches
           git add .
-
-          if git ls-remote --heads origin "$TARGET_BRANCH" | grep -q "$TARGET_BRANCH"; then
-            git checkout -B "$TARGET_BRANCH" "origin/$TARGET_BRANCH"
-          else
-            git checkout -b "$TARGET_BRANCH"
-          fi
-
-          git add .
-          git commit --allow-empty -m "Push from website generator (branch: ${{ github.ref_name }})"
-          git push origin "$TARGET_BRANCH"
-        working-directory: ./deepthought-initiative.github.io
+          git commit --allow-empty -m "Push from website generator"
+          git push
+        working-directory: deepthought-initiative.github.io
