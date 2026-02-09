@@ -65,10 +65,10 @@
                                 <th>Name</th>
                                 <th>Academic Role</th>
                             </tr>
-                            {% for person_id, person_info in alumni_members.items()%}
+                            {% for person_id, person_value in alumni_members.iterrows() %}
                             <tr>
-                                <td>{{ person_info["full_name"] }}</td>
-                                <td>{{ person_info["academic_role"] }}</td>
+                                <td>{{ person_value["full_name"] }}</td>
+                                <td>{{ person_value["current_role"] }}</td>
                             </tr>
                             {% endfor %}
                         </table>
