@@ -7,9 +7,6 @@ on:
   push:
     branches:
       - master
-  pull_request:
-    branches:
-      - master
 
 jobs:
   update_website:
@@ -20,7 +17,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: kerzendorf-lab/groupwebsite_generator
-          ref: dti-code
           path: groupwebsite_generator
           token: ${{ secrets.SITE_TARDIS }}
 
@@ -28,7 +24,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: deepthought-initiative/dtiwebsite_generator
-          ref: new-refactor
           path: dtiwebsite_generator
           token: ${{ secrets.SITE_TARDIS }}
 
@@ -36,7 +31,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: deepthought-initiative/group-data
-          ref: new-refactor
           path: group-data
           token: ${{ secrets.SITE_TARDIS }}
 
@@ -45,7 +39,6 @@ jobs:
         with:
           repository: kerzendorf-lab/group-data
           path: kerzendorf_lab_group_data
-          ref: dti-experiences 
           token: ${{ secrets.SITE_TARDIS }}
 
       - name: Clone deepthought-initiative.github.io
@@ -54,7 +47,6 @@ jobs:
           repository: deepthought-initiative/deepthought-initiative.github.io
           path: deepthought-initiative.github.io
           token: ${{ secrets.SITE_TARDIS }}
-
 
       - name: Clone Research and News data
         uses: actions/checkout@v4
