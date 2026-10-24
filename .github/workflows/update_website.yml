@@ -20,6 +20,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: kerzendorf-lab/groupwebsite_generator
+          ref: a29262651d9bd54cd4047a3d33611d2b3ca99cbd
           path: groupwebsite_generator
           token: ${{ secrets.SITE_TARDIS }}
 
